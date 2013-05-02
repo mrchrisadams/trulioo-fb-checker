@@ -86,48 +86,40 @@ if ($user) {
     </style>
   </head>
   <body>
-    <h1>php-sdk</h1>
+    <h1>Trulio Proof of Concept</h1>
 
     <?php if ($user): ?>
       <a href="<?php echo $logoutUrl; ?>">Logout</a>
     <?php else: ?>
       <div>
-        Login using OAuth 2.0 handled by the PHP SDK:
+        <p>You can use your social media activity to help prove your identity online.</p>
+        <p>If you want to do this, log in with a Facebook, and we'll return a score showing confident Trulioo believes it belongs to a real person:</p>
         <a href="<?php echo $loginUrl; ?>">Login with Facebook</a>
       </div>
     <?php endif ?>
 
-    <h3>PHP Session</h3>
-    <pre><?php print_r($_SESSION); ?></pre>
-
     <?php if ($user): ?>
-      <h3>You</h3>
-      <img src="https://graph.facebook.com/<?php echo $user; ?>/picture">
-
-
-
-      <h3>Your Trulio score:</h3>
 
 <?php
 
-// Configurations
-
-$token = $facebook->getAccessToken();
-
-$truliooProfilePlus = new TruliooProfilePlus(getenv('TRULIOO_PROFILEPLUS_API_KEY'), $token);
-
-        $cl = $truliooProfilePlus->fetchCL();
-
-
-    // Do something with the confidence level class.
-//@TODO: ========================= Add your code here! =========================
-    echo 'Your confidence level class for the Facebook users is: ', $cl, "\n\n";
+$fb_token = $facebook->getAccessToken();
+$truliooApiKey = getenv('TRULIOO_PROFILEPLUS_API_KEY');
+$truliooProfilePlus = new TruliooProfilePlus($truliooApiKey, $fb_token);
+$confidence_level = $truliooProfilePlus->fetchCL();
 ?>
 
+<h3>Trulio's confidence score for this facebook account for <?php echo he(idx($user_profile, 'name')); ?> is:</h3>
+
+<h2>
+    <?php print($confidence_level); ?>
+</h2>
+
+<h4>What do these codes mean?</h4>
+<p>Higher is better: 100 indicates a valid account but rarely used, whereas 400 is the highest level of confidence possible, with ample evidence of use by a real person.</p>
+
     <?php else: ?>
-      <strong><em>You are not Connected.</em></strong>
+
     <?php endif ?>
 
   </body>
 </html>
-0
