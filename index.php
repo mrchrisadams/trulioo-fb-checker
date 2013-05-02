@@ -99,16 +99,16 @@ if ($user) {
 
       $fb_token = $facebook->getAccessToken();
       $truliooApiKey = getenv('TRULIOO_PROFILEPLUS_API_KEY');
-      $truliooProfilePlus = new TruliooProfilePlus($truliooApiKey, $fb_token);
-      $confidence_level = $truliooProfilePlus->fetchCL();
-    ?>
+      // $truliooProfilePlus = new TruliooProfilePlus($truliooApiKey, $fb_token);
+      // $confidence_level = $truliooProfilePlus->fetchCL();
+?>
 
   <h3>
     Trulio's confidence score for the facebook account of <?php echo he(idx($user_profile, 'name')); ?> is:
   </h3>
 
   <h2>
-      <?php print($confidence_level); ?>
+      <?php // print($confidence_level); ?>
   </h2>
 
   <h4>What do these codes mean?</h4>
