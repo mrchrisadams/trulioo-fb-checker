@@ -101,15 +101,25 @@ if ($user) {
       $truliooApiKey = getenv('TRULIOO_PROFILEPLUS_API_KEY');
       $truliooProfilePlus = new TruliooProfilePlus($truliooApiKey, $fb_token);
       $confidence_level = $truliooProfilePlus->fetchCL();
-?>
+    ?>
 
   <h3>
     Trulio's confidence score for the facebook account of <?php echo he(idx($user_profile, 'name')); ?> is:
   </h3>
+<?php
 
+if ($confidence_level) {
+
+  ?>
   <h2>
       <?php print($confidence_level); ?>
   </h2>
+<?php } else {
+  ?>
+    <?php print("Nothing returned from Trulioo"); ?>
+
+<?php } ?>
+
 
   <h4>What do these codes mean?</h4>
   <p>Higher is better: 100 indicates a valid account but rarely used, whereas 400 is the highest level of confidence possible, with ample evidence of use by a real person.</p>
