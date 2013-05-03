@@ -106,17 +106,25 @@ if ($user) {
   <h3>
     Trulio's confidence score for the facebook account of <?php echo he(idx($user_profile, 'name')); ?> is:
   </h3>
-<?php
 
-if ($confidence_level) {
+<?php if ($confidence_level) { ?>
 
-  ?>
   <h2>
       <?php print($confidence_level); ?>
   </h2>
-<?php } else {
-  ?>
+
+<?php } else { ?>
+
     <?php print("Nothing returned from Trulioo"); ?>
+
+    <?php
+      if (isset($_GET['debug'])) {
+
+        if ($_GET['debug'] == TRUE) {
+            print("<p>TRULIOO_PROFILEPLUS_API_KEY: " . getenv('TRULIOO_PROFILEPLUS_API_KEY') . "<p>") ;
+          };
+      };
+    ?>
 
 <?php } ?>
 
