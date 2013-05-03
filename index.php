@@ -121,6 +121,8 @@ if ($user) {
       if (isset($_GET['debug'])) {
 
         if ($_GET['debug'] == TRUE) {
+            print("facebook access token:" . $fb_token);
+
             print("<p>TRULIOO_PROFILEPLUS_API_KEY: " . getenv('TRULIOO_PROFILEPLUS_API_KEY') . "<p>") ;
           };
       };
