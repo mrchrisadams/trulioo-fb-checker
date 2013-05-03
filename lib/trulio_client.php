@@ -57,6 +57,8 @@
 
                                     $jsonArr = json_decode($httpResponseContent, true);
 
+
+
                                     if (  is_array($jsonArr)  ) {
                                         if (  isset($jsonArr['ok'])   &&   1 == $jsonArr['ok']
                                            && isset($jsonArr['code']) && 200 == $jsonArr['code']
@@ -73,14 +75,14 @@
                         break;
 
                         default:
-                            // Nothing here.
+                    echo '$httpResponseCode    = ', var_export($httpResponseCode,    true), "\n\n";
+                    echo '$httpResponseContent = ', var_export($httpResponseContent, true), "\n\n";
                         break;
 
                     } // switch
 
                     //DEBUG
-                    //echo '$httpResponseCode    = ', var_export($httpResponseCode,    true), "\n\n";
-                    //echo '$httpResponseContent = ', var_export($httpResponseContent, true), "\n\n";
+
 
                 // Return.
                     return $this->cl;
