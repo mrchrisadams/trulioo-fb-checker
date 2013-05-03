@@ -115,15 +115,17 @@ if ($user) {
 
 <?php } else { ?>
 
-    <?php print("Nothing returned from Trulioo"); ?>
+    <?php print("<p>No confidence score was returned from Trulioo.</p>"); ?>
 
     <?php
       if (isset($_GET['debug'])) {
 
         if ($_GET['debug'] == TRUE) {
-            print("facebook access token:" . $fb_token);
+            print('<pre>');
+            print("Facebook access token used for oauth request:" . $fb_token);
 
             print("<p>TRULIOO_PROFILEPLUS_API_KEY: " . getenv('TRULIOO_PROFILEPLUS_API_KEY') . "<p>") ;
+            print('</pre>');
           };
       };
     ?>
