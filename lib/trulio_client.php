@@ -75,8 +75,16 @@
                         break;
 
                         default:
-                    echo '$httpResponseCode    = ', var_export($httpResponseCode,    true), "\n\n";
+if (isset($_GET['debug'])) {
+
+        if ($_GET['debug'] == TRUE) {
+                echo '<pre>';
+                echo '$httpResponseCode    = ', var_export($httpResponseCode,    true), "\n\n";
                     echo '$httpResponseContent = ', var_export($httpResponseContent, true), "\n\n";
+                echo '</pre>';
+        };
+      };
+
                         break;
 
                     } // switch
